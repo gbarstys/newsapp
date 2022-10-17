@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->string('headline');
+            $table->string('newsimage')->nullable();
             $table->longText('description');
             $table->timestamps();
         });

@@ -33,6 +33,10 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
+        if($request->hasFile('newsimage')) {
+            $formFields['newsimage'] = $request->file('newsimage')->store('newsimages', 'public');
+        }
+
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing created successfully');
