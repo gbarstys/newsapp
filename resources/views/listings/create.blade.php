@@ -19,6 +19,7 @@
                 type="text"
                 class="border border-gray-200 rounded p-2 w-full"
                 name="headline"
+                value="{{old('headline')}}"
                 placeholder="Example: Electricity bills going to raise by 20% this season "
             />
 
@@ -50,8 +51,9 @@
                 class="border border-gray-200 rounded p-2 w-full"
                 name="description"
                 rows="10"
-                placeholder="Electricity bills raise going to reach everyone’s pockets this year, etc. "
-            ></textarea>
+                placeholder="Electricity bills raise going to reach everyone’s pockets this year, etc. ">
+                {{old('description')}}
+            </textarea>
 
             @error('description')
               <p class="text-red-500 text-xs mt-1">{{$message}}</p>
