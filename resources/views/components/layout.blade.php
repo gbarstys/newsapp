@@ -55,7 +55,7 @@
             <p class="ml-1">Copyright &copy; 2022, All Rights reserved</p>
 
             <a
-                href="create.html"
+                href="/listings/create"
                 class="absolute top-1/3 right-10 bg-logo rounded-lg text-white py-2 px-5"
                 >Post News</a
             >

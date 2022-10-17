@@ -20,4 +20,21 @@ class ListingController extends Controller
             'listing' => $listing
         ]);
     }
+
+    // Show create form
+    public function create() {
+        return view('listings.create');
+    }
+
+    // Store listing data
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            'headline' => 'required',
+            'description' => 'required'
+        ]);
+
+        Listing::create($formFields);
+
+        return redirect('/');
+    }
 }
