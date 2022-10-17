@@ -41,4 +41,26 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Listing created successfully');
     }
+
+    //Show edit form
+    public function edit(Listing $listing) {
+        return view('listings.edit', ['listing' => $listing]);
+    }
+
+    //Update Listing Data
+    public function update(Request $request, Listing $listing)
+    {
+        $formFields = $request->validate([
+            'headline' => 'required',
+            'description' => 'required'
+        ]);
+
+        if ($request->hasFile('newsimage')) {
+            $formFields['newsimage'] = $request->file('newsimage')->store('newsimages', 'public');
+        }
+
+        $listing->update($formFields);
+
+        return back()->with('message', 'Listing updated successfully');
+    }
 }

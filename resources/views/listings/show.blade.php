@@ -11,18 +11,23 @@
         >
             <img
                 class="w-100 mr-6 mb-6"
-                src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.jpg')}}" alt=""
+                src="{{$listing->newsimage ? asset('storage/' . $listing->newsimage) : asset('/images/no-image.jpg')}}" alt=""
             />
-            <div class="border border-gray-200 w-full mb-6"></div>
-            <div>
                 <h3 class="text-3xl font-bold mb-4">
                     {{$listing->headline}}
                 </h3>
                 <div class="text-lg space-y-6">
                     {{$listing->description}}
-                </div>
             </div>
         </div>
     </x-card>
+
+    <x-card class="mt-4 p-2 flex space-x-6">
+        <a href="/listings/{{$listing->id}}/edit">
+            <i class="fa-solid fa-pencil"></i> Edit
+        </a>
+
+    </x-card>
+
 </div>
 </x-layout>
