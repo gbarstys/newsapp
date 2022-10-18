@@ -21,19 +21,19 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
-        //Hash Password
+    //Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
 
-        // Create user
+    // Create user
         $user = User::create($formFields);
 
-        // login user
+     // login user
         auth()->login($user);
 
         return redirect('/')->with('message', 'User created and logged in');
     }
 
-        //Logout user
+    //Logout user
         public function logout(Request $request) {
             auth()->logout();
 
@@ -41,7 +41,26 @@ class UserController extends Controller
             $request->session()->regenerateToken();
 
             return redirect('/')->with('message', 'You have been logged out!');
-            
-    }
 
+    }
+    //Show login form
+        public function login() {
+            return view('users.login');
+        }
+
+    // Authenticate user
+    public function authenticate(Request $request) {
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message', 'You are now logged in!');
+        }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
 }
